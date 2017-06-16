@@ -1,2 +1,4 @@
 # Toast
-轻量级swift Toast
+##轻量级swift Toast
+
+pod 'YCToast'
