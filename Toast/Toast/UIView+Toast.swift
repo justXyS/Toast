@@ -47,7 +47,7 @@ public class Toast: NSObject {
         case center(CGFloat)
     }
     
-    private let view: UIView
+    private weak var view: UIView?
     
     init(view: UIView) {
         self.view = view
@@ -60,6 +60,11 @@ public class Toast: NSObject {
     ///     - position: toast显示位置, CGFloat 用来 调整 toast y 偏移量, 默认是 .bottom(0)
     ///     - style: toast风格设置 默认是白字黑底12号字体
     open func show(text: String, duration: Length = LENGTH_LONG, position: Posisiton = .bottom(0), style: ToastStyle = ToastStyle.shared) {
+        
+        guard let view = view else {
+            return
+        }
+        
         if toastContainer.superview != nil {
             queue.append((text, duration, position))
             return
